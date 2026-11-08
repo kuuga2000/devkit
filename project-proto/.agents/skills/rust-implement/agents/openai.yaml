@@ -1,0 +1,4 @@
+interface:
+  display_name: "Implement Rust"
+  short_description: "Implement features across Rust projects"
+  default_prompt: "Use $rust-implement for the requested Rust project task."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Review Rust Code"
+  short_description: "Find concrete defects in Rust code"
+  default_prompt: "Use $rust-code-review for the requested Rust project task."

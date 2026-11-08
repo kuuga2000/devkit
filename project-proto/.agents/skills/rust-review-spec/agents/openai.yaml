@@ -1,0 +1,4 @@
+interface:
+  display_name: "Review Rust Specifications"
+  short_description: "Review Rust requirements before coding"
+  default_prompt: "Use $rust-review-spec for the requested Rust project task."
