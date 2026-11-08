@@ -2,6 +2,8 @@
 
 Reusable agent skills for Rust implementation, code review, and specification review. The skills support libraries, CLIs, services, embedded/no_std, and FFI projects, following each project's toolchain, dependencies, and conventions.
 
+The shared `SKILL.md` format supports Claude Code, GitHub Copilot, and Codex when installed into their skill discovery directories.
+
 ## Skills
 
 | Skill | Purpose | Codex | Claude Code |
@@ -13,6 +15,24 @@ Reusable agent skills for Rust implementation, code review, and specification re
 The implementation skill includes conditional guidance for Tokio, Axum/Tower, Tonic/Prost, Serde, Reqwest, SQLx, and Tracing. It does not require those dependencies in every Rust project.
 
 ## Installation
+
+### Skills CLI
+
+With Node.js 22.20 or later, run this from your target project:
+
+```bash
+npx skills add kuuga2000/devkit
+```
+
+Select the desired skills and agents in the interactive prompts. For installation across projects, use:
+
+```bash
+npx skills add kuuga2000/devkit -g
+```
+
+These commands use the third-party [Skills CLI](https://github.com/vercel-labs/skills). The syntax follows its documentation; installation from this repository has not yet been tested end to end.
+
+### Manual installation
 
 The `skills/` directory contains the distributable folders. Install the desired folders into your agent's skill directory; the repository layout alone does not enable them in an agent session. The examples below assume the destination folders do not already exist. Copy a single named folder instead of `skills/.` to install only one skill.
 
@@ -37,7 +57,14 @@ mkdir -p ~/.claude/skills
 cp -R skills/. ~/.claude/skills/
 ```
 
-These copies are standalone installations. Copy updated folders again when upgrading. The `agents/openai.yaml` files provide Codex UI metadata; Claude Code uses `SKILL.md` directly.
+For project-local GitHub Copilot use, run from the Devkit root:
+
+```bash
+mkdir -p /path/to/your-project/.github/skills
+cp -R skills/. /path/to/your-project/.github/skills/
+```
+
+These copies are standalone installations. Copy updated folders again when upgrading. The `agents/openai.yaml` files provide Codex UI metadata; Claude Code and Copilot use `SKILL.md` directly. See the [Copilot CLI skill documentation](https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/add-skills) and [Copilot in VS Code documentation](https://code.visualstudio.com/docs/agent-customization/agent-skills) for discovery and configuration details.
 
 ### Shared installation for both agents
 
@@ -69,6 +96,8 @@ $rust-review-spec review specs/feature.md
 ```
 
 The spec path is illustrative; substitute your actual file. The skills guide the agent; they do not run a Rust application or replace project tests and review.
+
+For Copilot, ask it to use a skill by name, for example: `Use rust-code-review to review my local Rust changes.` Copilot can also select installed skills when their descriptions match the task.
 
 See [Rust skill source-selection notes](RUST-SKILLS.md) for the collection sources used to develop these skills.
 
