@@ -5,7 +5,7 @@ description: Review Rust code or diffs across libraries, CLIs, services, embedde
 
 # Review Rust code
 
-Review without editing unless fixes are requested. Establish the requested diff/base or file scope. Read repository instructions, requirements, Cargo/toolchain configuration, callers, and relevant tests. With no scope, inspect staged and unstaged changes and state that scope; ask for a target if none exist. Do not silently choose an arbitrary branch base.
+Review without editing unless fixes are requested. Establish the requested diff/base or file scope. Read repository instructions, requirements, Cargo/toolchain configuration, callers, and relevant tests. With no scope, inspect staged and unstaged changes plus relevant, non-ignored untracked files, and state that scope. Discover untracked files through git status or git ls-files --others --exclude-standard and read their contents directly; ordinary staged and unstaged diffs omit them. Ask for a target if no local changes exist. Do not silently choose an arbitrary branch base.
 
 Identify project type, target platforms, MSRV, feature combinations, and public contracts before applying checks. Trace changed behavior across boundaries rather than assessing isolated syntax. Compare against actual requirements; missing requirements are questions, not invented defects.
 
